@@ -1,0 +1,130 @@
+/* --- The Greater Noida Jewellery Trail --- */
+/* --- style.css --- */
+
+/* 1. Global Styles & Variables */
+:root {
+    --dark-bg: #121212;
+    --primary-text: #EAEAEA;
+    --gold-accent: #D4AF37;
+    --secondary-bg: #1E1E1E;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--primary-text);
+    font-family: var(--font-body);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+a { color: var(--gold-accent); text-decoration: none; transition: opacity 0.3s ease; }
+a:hover { opacity: 0.8; }
+
+/* 2. Header & Navigation */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: rgba(18, 18, 18, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--secondary-bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo { font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold-accent); }
+.logo a { text-decoration: none; }
+
+nav a { color: var(--primary-text); text-decoration: none; margin-left: 25px; font-weight: 500; transition: color 0.3s ease; }
+nav a:hover, nav a.active { color: var(--gold-accent); }
+
+/* 3. General Page Structure & Footer */
+.main-content { max-width: 1000px; margin: 40px auto; padding: 0 5%; }
+.main-content h1, .main-content h2 { font-family: var(--font-heading); color: var(--gold-accent); }
+.main-content h1 { font-size: 3rem; margin-bottom: 10px; text-align: center; }
+.main-content .page-tagline { text-align: center; font-style: italic; color: #ccc; margin-bottom: 40px; }
+.main-content p { line-height: 1.8; color: #ccc; margin-bottom: 1rem; }
+
+footer { text-align: center; padding: 20px; margin-top: 50px; background-color: var(--secondary-bg); font-size: 0.9rem; color: #888; }
+
+/* 4. Home Page: Hero & Map */
+.hero { text-align: center; padding: 80px 20px; }
+.hero h1 { font-size: 3.5rem; }
+.hero p { font-size: 1.2rem; color: #aaa; }
+.map-container { padding: 40px 0; text-align: center; }
+.map-container h2 { font-size: 2.5rem; margin-bottom: 20px; }
+.interactive-map {
+    position: relative; width: 100%; max-width: 900px; height: 500px;
+    background-color: var(--secondary-bg); margin: 0 auto; border: 1px solid var(--gold-accent);
+    border-radius: 8px; background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+}
+.map-instruction { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #666; font-style: italic; }
+.hotspot {
+    position: absolute; width: 20px; height: 20px; background-color: var(--gold-accent);
+    border-radius: 50%; cursor: pointer; box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+    animation: pulse 2s infinite; transform: translate(-50%, -50%); transition: transform 0.3s ease;
+}
+.hotspot:hover { transform: translate(-50%, -50%) scale(1.3); }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
+.hotspot::after {
+    content: attr(data-tooltip); position: absolute; bottom: 150%; left: 50%;
+    transform: translateX(-50%); background-color: var(--dark-bg); color: var(--gold-accent);
+    padding: 5px 10px; border-radius: 4px; white-space: nowrap; opacity: 0;
+    transition: opacity 0.3s ease; pointer-events: none;
+}
+.hotspot:hover::after { opacity: 1; }
+
+/* 5. Jeweller Detail Page */
+.jeweller-profile .tagline { text-align: center; font-style: italic; color: #ccc; margin-bottom: 40px; }
+.gallery { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; margin-bottom: 40px; }
+.gallery img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; border: 1px solid var(--secondary-bg); }
+.gallery img:first-child { grid-row: 1 / 3; grid-column: 1 / 2; height: 100%; }
+.content-section h2 { font-family: var(--font-heading); font-size: 2rem; color: var(--gold-accent); border-bottom: 1px solid var(--secondary-bg); padding-bottom: 10px; margin-bottom: 15px; margin-top: 30px; }
+.content-section p, .content-section address { line-height: 1.8; color: #ccc; font-style: normal; }
+
+/* 6. Journal Page */
+.journal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.article-card { background-color: var(--secondary-bg); border-radius: 8px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.article-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+.article-card img { width: 100%; height: 200px; object-fit: cover; }
+.card-content { padding: 20px; }
+.card-content h3 { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 10px; }
+.card-content p { font-size: 0.9rem; color: #aaa; margin-bottom: 20px; }
+.card-content a { font-weight: bold; }
+
+/* 7. Article & About Page */
+.article-content, .about-content { max-width: 800px; margin: 0 auto; }
+.article-content img { width: 100%; height: auto; border-radius: 8px; margin: 30px 0; }
+.article-content h2, .article-content h3 { font-family: var(--font-heading); color: var(--gold-accent); margin-top: 30px; margin-bottom: 15px; }
+
+/* 8. Get Featured (Contact Form) */
+.contact-form { max-width: 700px; margin: 0 auto; background-color: var(--secondary-bg); padding: 40px; border-radius: 8px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+.form-group input, .form-group textarea {
+    width: 100%; padding: 12px; border-radius: 4px; border: 1px solid #444;
+    background-color: var(--dark-bg); color: var(--primary-text); font-family: var(--font-body);
+}
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--gold-accent); }
+.submit-btn {
+    display: block; width: 100%; padding: 15px; background-color: var(--gold-accent);
+    color: var(--dark-bg); font-weight: bold; font-size: 1.1rem;
+    border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease;
+}
+.submit-btn:hover { background-color: #b89b31; }
+
+/* 9. Responsive Design */
+@media (max-width: 768px) {
+    header { flex-direction: column; padding: 15px; }
+    .logo { margin-bottom: 10px; }
+    nav a { margin: 0 10px; }
+    .main-content h1, .hero h1 { font-size: 2.5rem; }
+    .gallery { grid-template-columns: 1fr; }
+}
